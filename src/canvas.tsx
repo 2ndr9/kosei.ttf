@@ -99,7 +99,8 @@ const Canvas: React.FC<IProps> = (props) => {
       </div>
       <div>
         <button onClick={Reset}>リセット</button>
-        <img src={base64Data} />
+        <button onClick={Save}>保存</button>
+        {/* <img src={base64Data} /> */}
       </div>
     </section>
   );
