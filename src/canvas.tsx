@@ -1,9 +1,5 @@
 import React, { useRef, useState } from "react";
 
-interface IProps {
-  length: number;
-}
-
 interface IRect {
   width: number;
   height: number;
@@ -13,8 +9,7 @@ interface IRect {
   bottom: number;
 }
 
-const Canvas: React.FC<IProps> = (props) => {
-  const { length } = props;
+const Canvas: React.FC = (props) => {
   let canvasRef = useRef<HTMLCanvasElement | null>(null);
   let mouseX: number | null = null;
   let mouseY: number | null = null;
@@ -73,7 +68,7 @@ const Canvas: React.FC<IProps> = (props) => {
 
   const Reset = () => {
     const ctx = getContext();
-    ctx.clearRect(0, 0, length, length);
+    // ctx.clearRect(0, 0, length, length);
 
     Save();
   };
@@ -86,21 +81,27 @@ const Canvas: React.FC<IProps> = (props) => {
   return (
     <section>
       <div>
-        <canvas
-          onMouseDown={OnClick}
-          onMouseMove={OnMove}
-          onMouseUp={DrawEnd}
-          onMouseOut={DrawEnd}
-          ref={canvasRef}
-          width={`${length}px`}
-          height={`${length}px`}
-          style={{ border: "2px solid" }}
-        />
+        <h1>あ</h1>
+        <div
+          id="canvasParent"
+          style={{ width: "100%", height: 0, paddingTop: "100%" }}
+        >
+          <canvas
+            id="canvas"
+            onMouseDown={OnClick}
+            onMouseMove={OnMove}
+            onMouseUp={DrawEnd}
+            onMouseOut={DrawEnd}
+            ref={canvasRef}
+            style={{
+              border: "2px solid",
+            }}
+          />
+        </div>
       </div>
       <div>
         <button onClick={Reset}>リセット</button>
         <button onClick={Save}>保存</button>
-        {/* <img src={base64Data} /> */}
       </div>
     </section>
   );
