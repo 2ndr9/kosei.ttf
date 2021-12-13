@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-family: tsuno;
+        src: url("./a.ttf") format("opentype");
+      }
+      @font-face {
+        font-family: maromin;
+        src: url("./Maromin-Mincho.otf") format("truetype");
+      }
+      body {
+        background-color: black;
+      }
+      .input {
+        font-family: tsuno;
+        color: black;
+      }
+      .tsuno {
+        font-family: tsuno, maromin;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="tsuno">あいうえお</h1>
+    <input type="text" class="input" placeholder="あいうえお" />
+  </body>
+</html>
