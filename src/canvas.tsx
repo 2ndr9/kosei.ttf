@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 
 interface IProps {
-  width: number;
-  height: number;
+  length: number;
 }
 
 interface IRect {
@@ -15,7 +14,7 @@ interface IRect {
 }
 
 const Canvas: React.FC<IProps> = (props) => {
-  const { width, height } = props;
+  const { length } = props;
   let canvasRef = useRef<HTMLCanvasElement | null>(null);
   let mouseX: number | null = null;
   let mouseY: number | null = null;
@@ -74,7 +73,7 @@ const Canvas: React.FC<IProps> = (props) => {
 
   const Reset = () => {
     const ctx = getContext();
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, length, length);
 
     Save();
   };
@@ -93,8 +92,9 @@ const Canvas: React.FC<IProps> = (props) => {
           onMouseUp={DrawEnd}
           onMouseOut={DrawEnd}
           ref={canvasRef}
-          width={`${width}px`}
-          height={`${height}px`}
+          width={`${length}px`}
+          height={`${length}px`}
+          style={{ border: "2px solid" }}
         />
       </div>
       <div>

@@ -4,7 +4,7 @@ import Canvas from "./canvas";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Canvas width={800} height={600}></Canvas>
+    <Canvas length={800}></Canvas>
   </React.StrictMode>,
   document.getElementById("root")
 );
