@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 interface IRect {
   width: number;
@@ -9,12 +9,10 @@ interface IRect {
   bottom: number;
 }
 
-const Canvas: React.FC = (props) => {
-  let canvasRef = useRef<HTMLCanvasElement | null>(null);
+const PureCanvas = React.forwardRef((props, ref: any) => {
+  const canvasRef = ref;
   let mouseX: number | null = null;
   let mouseY: number | null = null;
-  const [base64Data, setbase64Data] = useState();
-
   const getContext = (): CanvasRenderingContext2D => {
     const canvas: any = canvasRef.current;
     return canvas.getContext("2d");
@@ -45,7 +43,7 @@ const Canvas: React.FC = (props) => {
   const DrawEnd = (e: React.MouseEvent<HTMLCanvasElement>) => {
     mouseX = null;
     mouseY = null;
-    Save();
+    // Save();
   };
 
   const Draw = (x: number, y: number) => {
@@ -68,40 +66,65 @@ const Canvas: React.FC = (props) => {
 
   const Reset = () => {
     const ctx = getContext();
-    // ctx.clearRect(0, 0, length, length);
+    ctx.clearRect(0, 0, window.innerWidth, window.innerWidth);
 
     Save();
   };
 
+  const [base64Data, setbase64Data] = useState();
   const Save = () => {
     const canvas: any = canvasRef.current;
     setbase64Data(canvas.toDataURL("image/png", 0.85));
   };
 
   return (
+    <div>
+      <canvas
+        id="canvas"
+        onMouseDown={OnClick}
+        onMouseMove={OnMove}
+        onMouseUp={DrawEnd}
+        onMouseOut={DrawEnd}
+        ref={canvasRef}
+        style={{
+          border: "2px solid",
+        }}
+      />
+      <button onClick={Reset}>リセット</button>
+      <button onClick={Save}>保存</button>
+    </div>
+  );
+});
+
+const Canvas: React.FC = () => {
+  let canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const ctx1: any = canvasRef.current!;
+    const ctx = ctx1.getContext("2d");
+
+    const handleResize = () => {
+      ctx.canvas.height =
+        window.innerHeight > window.innerWidth
+          ? window.innerWidth * 0.8
+          : window.innerHeight * 0.8;
+      ctx.canvas.width =
+        window.innerHeight > window.innerWidth
+          ? window.innerWidth * 0.8
+          : window.innerHeight * 0.8;
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
     <section>
       <div>
         <h1>あ</h1>
-        <div
-          id="canvasParent"
-          style={{ width: "100%", height: 0, paddingTop: "100%" }}
-        >
-          <canvas
-            id="canvas"
-            onMouseDown={OnClick}
-            onMouseMove={OnMove}
-            onMouseUp={DrawEnd}
-            onMouseOut={DrawEnd}
-            ref={canvasRef}
-            style={{
-              border: "2px solid",
-            }}
-          />
-        </div>
-      </div>
-      <div>
-        <button onClick={Reset}>リセット</button>
-        <button onClick={Save}>保存</button>
+        <PureCanvas ref={canvasRef} />
       </div>
     </section>
   );
