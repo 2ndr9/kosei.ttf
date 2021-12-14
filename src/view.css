@@ -1,7 +1,9 @@
 @font-face {
   font-family: tsuno;
-  /* src: url("https://font-a.s3.ap-northeast-1.amazonaws.com/a.ttf") */
-  src: url("./a.ttf") format("opentype");
+  src: url("https://font-a.s3.ap-northeast-1.amazonaws.com/a.ttf")
+    format("opentype");
+  /* src: url("./a.ttf") 
+  format("opentype"); */
 }
 /* @font-face {
   font-family: maromin;

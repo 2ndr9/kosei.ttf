@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import axios from "axios";
 
 interface IRect {
   width: number;
@@ -74,6 +75,22 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
     setbase64Data(canvas.toDataURL("image/png"));
   };
 
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+
+    axios
+      .post(
+        "https://2sk1ffqhlh.execute-api.ap-northeast-1.amazonaws.com/prod",
+        {
+          base64: String(base64Data).replace(/^.*,/, ""),
+          font_name: "a",
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
   return (
     <div>
       <canvas
@@ -88,9 +105,9 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
         }}
       />
       <button onClick={Reset}>リセット</button>
-      <a href={base64Data} download="x.png">
-        ダウンロード
-      </a>
+      <form onSubmit={handleSubmit}>
+        <button type="submit">アップロード</button>
+      </form>
     </div>
   );
 });
