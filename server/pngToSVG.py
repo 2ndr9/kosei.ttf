@@ -1,8 +1,7 @@
-import boto3
+import json
 from io import BytesIO
 import base64
 import sys
-import os
 import operator
 from collections import deque
 import io
@@ -38,7 +37,7 @@ def normalize(a):
 
 def svg_header(width, height):
     return """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="%d" height="%d"
 	 xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -225,7 +224,7 @@ def png_to_svg(img_str, contiguous=None, keep_every_point=None):
         return rgba_image_to_svg_pixels(im_rgba)
 
 
-def lambda_handler(event, context):
+def lambda_handler(base_64ed_image, font_name):
     parser = OptionParser()
     parser.add_option("-p", "--pixels", action="store_false", dest="contiguous",
                       help="Generate a separate shape for each pixel; do not group pixels into contiguous areas of the same colour", default=True)
@@ -233,18 +232,10 @@ def lambda_handler(event, context):
                       help="1-pixel-width edges on contiguous shapes; default is to remove intermediate points on straight line edges. ", default=None)
     (options, args) = parser.parse_args()
 
-    base_64ed_image = event['base64']
-    font_name = event['font_name']
+    cp = ord(font_name)
+    unicode_of_font_name = r'u{:04x}'.format(
+        cp) if cp < 0x10000 else r'U{:08x}'.format(cp)
 
-    # バケット作成を作成してbynary変換して保存する。
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket('font-a')
-
-    bucket.put_object(
-        Key=f'svgs/{font_name}.svg',
-        Body=png_to_svg(base_64ed_image, contiguous=options.contiguous,
-                        keep_every_point=options.keep_every_point),
-        ContentType='image/svg+xm')
-
-    # とりあえずOKを返す。
-    return {'statusCode': 200}
+    f = open(f'svg/{unicode_of_font_name}-{font_name}.svg', 'w')
+    f.write(png_to_svg(base_64ed_image, contiguous=options.contiguous,
+                       keep_every_point=options.keep_every_point))
