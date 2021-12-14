@@ -108,6 +108,9 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
       <form onSubmit={handleSubmit}>
         <button type="submit">アップロード</button>
       </form>
+      {/* <a href={base64Data} download="a.png">
+        ダウンロード
+      </a> */}
     </div>
   );
 });

@@ -1,3 +1,6 @@
+import boto3
+from io import BytesIO
+import base64
 import sys
 import os
 import operator
@@ -206,11 +209,13 @@ def rgba_image_to_svg_contiguous(im, keep_every_point=False):
     return s.getvalue()
 
 
-def png_to_svg(filename, contiguous=None, keep_every_point=None):
+def png_to_svg(img_str, contiguous=None, keep_every_point=None):
     try:
-        im = Image.open(filename)
+        img_raw = base64.b64decode(img_str)
+        im = Image.open(BytesIO(img_raw))
+        # im = Image.open(filename)
     except IOError as e:
-        sys.stderr.write('%s: Could not open as image file\n' % filename)
+        # sys.stderr.write('%s: Could not open as image file\n' % filename)
         sys.exit(1)
     im_rgba = im.convert('RGBA')
 
@@ -220,7 +225,7 @@ def png_to_svg(filename, contiguous=None, keep_every_point=None):
         return rgba_image_to_svg_pixels(im_rgba)
 
 
-if __name__ == "__main__":
+def lambda_handler(event, context):
     parser = OptionParser()
     parser.add_option("-p", "--pixels", action="store_false", dest="contiguous",
                       help="Generate a separate shape for each pixel; do not group pixels into contiguous areas of the same colour", default=True)
@@ -228,18 +233,18 @@ if __name__ == "__main__":
                       help="1-pixel-width edges on contiguous shapes; default is to remove intermediate points on straight line edges. ", default=None)
     (options, args) = parser.parse_args()
 
+    base_64ed_image = event['base64']
+    font_name = event['font_name']
 
-if(len(sys.argv)) < 2:
-    for file in os.listdir("."):
-        if file.endswith(".png"):
-            print("Converting "+file)
-            f = open(file.replace(".png", ".svg"), 'w')
-            f.write(png_to_svg(file, contiguous=options.contiguous,
-                    keep_every_point=options.keep_every_point))
-else:
-    for file in sys.argv:
-        if file.endswith(".png"):
-            print("Converting "+file)
-            f = open(file.replace(".png", ".svg"), 'w')
-            f.write(png_to_svg(file, contiguous=options.contiguous,
-                    keep_every_point=options.keep_every_point))
+    # バケット作成を作成してbynary変換して保存する。
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket('font-a')
+
+    bucket.put_object(
+        Key=f'svgs/{font_name}.svg',
+        Body=png_to_svg(base_64ed_image, contiguous=options.contiguous,
+                        keep_every_point=options.keep_every_point),
+        ContentType='image/svg+xm')
+
+    # とりあえずOKを返す。
+    return {'statusCode': 200}
