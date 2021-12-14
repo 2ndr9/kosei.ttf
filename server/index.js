@@ -12,4 +12,8 @@ app.post("/", (req, res) => {
   console.log(req.body);
   res.send("Received POST Data!");
 });
+app.get("/", (req, res) => {
+  console.log(req.body);
+  res.send("Received POST Data!");
+});
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
