@@ -17,6 +17,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
     const canvas: any = canvasRef.current;
     return canvas.getContext("2d");
   };
+  const [base64Data, setbase64Data] = useState();
 
   const OnClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (e.button !== 0) {
@@ -41,9 +42,10 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
   };
 
   const DrawEnd = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas: any = canvasRef.current;
     mouseX = null;
     mouseY = null;
-    // Save();
+    setbase64Data(canvas.toDataURL("image/png"));
   };
 
   const Draw = (x: number, y: number) => {
@@ -68,13 +70,8 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
     const ctx = getContext();
     ctx.clearRect(0, 0, window.innerWidth, window.innerWidth);
 
-    Save();
-  };
-
-  const [base64Data, setbase64Data] = useState();
-  const Save = () => {
     const canvas: any = canvasRef.current;
-    setbase64Data(canvas.toDataURL("image/png", 0.85));
+    setbase64Data(canvas.toDataURL("image/png"));
   };
 
   return (
@@ -91,7 +88,9 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
         }}
       />
       <button onClick={Reset}>リセット</button>
-      <button onClick={Save}>保存</button>
+      <a href={base64Data} download="x.png">
+        ダウンロード
+      </a>
     </div>
   );
 });
@@ -121,12 +120,9 @@ const Canvas: React.FC = () => {
   }, []);
 
   return (
-    <section>
-      <div>
-        <h1>あ</h1>
-        <PureCanvas ref={canvasRef} />
-      </div>
-    </section>
+    <div>
+      <PureCanvas ref={canvasRef} />
+    </div>
   );
 };
 

@@ -5,8 +5,10 @@ import View from "./view";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Canvas></Canvas>
-    {/* <View /> */}
+    <div style={{ display: "inline" }}>
+      <Canvas></Canvas>
+      <View></View>
+    </div>
   </React.StrictMode>,
   document.getElementById("root")
 );
