@@ -8,7 +8,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.post("/auth/", (req, res) => {
+app.post("/", (req, res) => {
   console.log(req.body);
   res.send("Received POST Data!");
 });
