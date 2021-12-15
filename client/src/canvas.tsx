@@ -80,7 +80,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
     event.preventDefault();
 
     axios
-      .post("http://127.0.0.1:5000", {
+      .post("http://18.180.152.54:5000/", {
         base64: String(base64Data).replace(/^.*,/, ""),
         font_name: fontName,
       })
