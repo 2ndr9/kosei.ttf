@@ -14,7 +14,7 @@ const View: React.FC = (props) => {
       <textarea
         className="input"
         placeholder=""
-        style={{ width: "100%", height: "900px" }}
+        style={{ width: "100%", height: "900px", fontSize: "60px" }}
       />
     </section>
   );
