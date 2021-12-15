@@ -7,8 +7,12 @@ const FontFace = createGlobalStyle`
     format("opentype");
 }
 
-body, input, select, button{
+body, select, button{
   font-family:tsuno
+}
+
+input{
+  font-family:""
 }
 
 #root{
