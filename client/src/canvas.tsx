@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 interface IRect {
   width: number;
@@ -20,6 +21,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
   };
   const [base64Data, setbase64Data] = useState();
   const [fontName, setFontName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const OnClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (e.button !== 0) {
@@ -79,12 +81,15 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
+    setIsLoading(true);
+
     axios
       .post("https://18.180.152.54/", {
         base64: String(base64Data).replace(/^.*,/, ""),
         font_name: fontName,
       })
       .then((res) => {
+        setIsLoading(false);
         console.log(res);
         window.location.href = window.location.href;
       });
@@ -92,6 +97,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
 
   return (
     <div>
+      <Loading isLoading={isLoading}></Loading>
       <canvas
         id="canvas"
         onMouseDown={OnClick}
