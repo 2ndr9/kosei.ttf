@@ -1,5 +1,13 @@
-import React, { useRef, useState } from "react";
-import "./view.css";
+import React from "react";
+
+import styled from "styled-components";
+
+const TextArea = styled.textarea`
+  font-family: "tsuno";
+  width: 100%;
+  height: 900px;
+  font-size: 40px;
+`;
 
 const View: React.FC = (props) => {
   return (
@@ -11,11 +19,7 @@ const View: React.FC = (props) => {
         今日の会見で布マスクの有効活用や廃棄の可能性について問われた松野官房長官は、「一般的に販売されているマスクの性能についてはさまざまな研究があるが、布製マスクについても一定程度のウイルスを捕集する性能があるものと承知している」とした上で、「布製マスクの在庫については、これまで行ってきた介護施設等への随時配布のほか、さらなる有効活用の方策として、希望する自治体に配布をし、災害備蓄や地域住民への配布などで活用していただくこと。希望する個人の方へ国から配付をすることなどの取り組みを進めることとしており、今後とも厚生労働省において布製マスクの在庫の解消に向けた取り組みを検討していくものと承知している」と述べた。（ANNニュース） */}
       </h1>
       <p></p>
-      <textarea
-        className="input"
-        placeholder=""
-        style={{ width: "100%", height: "900px", fontSize: "60px" }}
-      />
+      <TextArea />
     </section>
   );
 };
