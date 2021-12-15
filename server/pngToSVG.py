@@ -241,4 +241,4 @@ def lambda_handler(base_64ed_image, font_name):
                        keep_every_point=options.keep_every_point))
 
     import subprocess
-    subprocess.call('node makeTtf.js', shell=True)
+    subprocess.call('sudo node makeTtf.js', shell=True)

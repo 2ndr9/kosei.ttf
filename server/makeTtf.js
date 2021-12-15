@@ -20,6 +20,7 @@ webfont({
         Bucket: "font-a",
         Key: "a.ttf",
         Body: result.ttf,
+	ACL: "public-read"
       },
       (err, data) => {
         if (err) {

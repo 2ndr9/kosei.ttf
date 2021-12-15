@@ -1,3 +1,5 @@
+#!/usr/bin python3
+
 import base64
 from flask import Flask, request
 from pngToSVG import lambda_handler
@@ -22,4 +24,4 @@ def post_user():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host='0.0.0.0', port=443, ssl_context=('/home/ec2-user/openssl/server.crt', '/home/ec2-user/openssl/server.key'), threaded=True, debug=True)

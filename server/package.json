@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "aws-sdk": "^2.1046.0",
     "webfont": "^11.2.26"
   }
 }
