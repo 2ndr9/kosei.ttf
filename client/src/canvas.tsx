@@ -86,6 +86,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
       })
       .then((res) => {
         console.log(res);
+        window.location.href = window.location.href;
       });
   };
 
