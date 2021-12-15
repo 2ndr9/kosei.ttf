@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Canvas from "./canvas";
 import View from "./view";
 import FontFace from "./FontFace";
+// import "./index.css";
 
 import { isChrome, isMobile } from "react-device-detect";
 

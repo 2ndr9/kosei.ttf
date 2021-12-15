@@ -63,7 +63,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
     }
     ctx.lineTo(x, y);
     ctx.lineCap = "square";
-    ctx.lineWidth = 5;
+    ctx.lineWidth = 8;
     ctx.strokeStyle = "#000000";
     ctx.stroke();
     mouseX = x;
@@ -109,21 +109,24 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
           border: "2px solid",
         }}
       />
-      <button onClick={Reset}>リセット</button>
-      <form onSubmit={handleSubmit}>
+      <button onClick={Reset} style={{ margin: "5px" }}>
+        リセット
+      </button>
+      <form onSubmit={handleSubmit} style={{ display: "flex" }}>
         <p>
-          font_name:{" "}
+          更新する文字:{" "}
           <input
             type="text"
+            required
+            maxLength={1}
             value={fontName}
             onChange={(event) => setFontName(event.target.value)}
           />
         </p>
-        <button type="submit">アップロード</button>
+        <button type="submit" style={{ margin: "15px" }}>
+          アップロード
+        </button>
       </form>
-      {/* <a href={base64Data} download="a.png">
-        ダウンロード
-      </a> */}
     </div>
   );
 });
@@ -137,13 +140,17 @@ const Canvas: React.FC = () => {
 
     const handleResize = () => {
       ctx.canvas.height =
-        window.innerHeight > window.innerWidth
-          ? window.innerWidth * 0.8
-          : window.innerHeight * 0.8;
+        window.innerHeight > window.innerWidth * 2
+          ? window.innerWidth * 0.9
+          : (((window.innerWidth * window.innerHeight) / window.innerWidth) *
+              0.9) /
+            2;
       ctx.canvas.width =
-        window.innerHeight > window.innerWidth
-          ? window.innerWidth * 0.8
-          : window.innerHeight * 0.8;
+        window.innerHeight > window.innerWidth * 2
+          ? window.innerWidth * 0.9
+          : (((window.innerWidth * window.innerHeight) / window.innerWidth) *
+              0.9) /
+            2;
     };
 
     handleResize();
