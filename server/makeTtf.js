@@ -9,7 +9,8 @@ webfont({
   formats: ["ttf"],
 })
   .then((result) => {
-    fs.writeFileSync("a.ttf", result.ttf);
+    // fs.writeFileSync("a.ttf", result.ttf);
+    fs.writeFileSync("../client/src/a.ttf", result.ttf);
   })
   .catch((error) => {
     throw error;

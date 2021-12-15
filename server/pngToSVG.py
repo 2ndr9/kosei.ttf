@@ -236,6 +236,9 @@ def lambda_handler(base_64ed_image, font_name):
     unicode_of_font_name = r'u{:04x}'.format(
         cp) if cp < 0x10000 else r'U{:08x}'.format(cp)
 
-    f = open(f'svg/{unicode_of_font_name}-{font_name}.svg', 'w')
+    f = open(f'svg/{font_name}.svg', 'w')
     f.write(png_to_svg(base_64ed_image, contiguous=options.contiguous,
                        keep_every_point=options.keep_every_point))
+
+    import subprocess
+    subprocess.call('node makeTtf.js', shell=True)

@@ -4,7 +4,8 @@ import "./view.css";
 const View: React.FC = (props) => {
   return (
     <section>
-      <h1 className="tsuno">あいうえお</h1>
+      <h1 className="tsuno">あいうえおかきくけこ</h1>
+      <p></p>
       <input type="text" className="input" placeholder="" />
     </section>
   );

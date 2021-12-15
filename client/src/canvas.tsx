@@ -19,6 +19,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
     return canvas.getContext("2d");
   };
   const [base64Data, setbase64Data] = useState();
+  const [fontName, setFontName] = useState("");
 
   const OnClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (e.button !== 0) {
@@ -81,7 +82,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
     axios
       .post("http://127.0.0.1:5000", {
         base64: String(base64Data).replace(/^.*,/, ""),
-        font_name: "a",
+        font_name: fontName,
       })
       .then((res) => {
         console.log(res);
@@ -103,6 +104,14 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
       />
       <button onClick={Reset}>リセット</button>
       <form onSubmit={handleSubmit}>
+        <p>
+          font_name:{" "}
+          <input
+            type="text"
+            value={fontName}
+            onChange={(event) => setFontName(event.target.value)}
+          />
+        </p>
         <button type="submit">アップロード</button>
       </form>
       {/* <a href={base64Data} download="a.png">
