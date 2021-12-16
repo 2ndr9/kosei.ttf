@@ -96,7 +96,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
   };
 
   return (
-    <div>
+    <div style={{ marginLeft: "auto", marginRight: "auto" }}>
       <Loading isLoading={isLoading}></Loading>
       <canvas
         id="canvas"
@@ -107,13 +107,39 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
         ref={canvasRef}
         style={{
           border: "2px solid",
+          display: "block",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       />
-      <button onClick={Reset} style={{ margin: "5px" }}>
-        リセット
-      </button>
-      <form onSubmit={handleSubmit} style={{ display: "flex" }}>
-        <p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginTop: "0",
+          marginLeft: "auto",
+          marginRight: "auto",
+          width: `428px`,
+        }}
+      >
+        <button
+          onClick={Reset}
+          style={{ marginTop: "3px", marginBottom: "10px" }}
+        >
+          リセット
+        </button>
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: "flex",
+          width: "428px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          // marginTop: "0",
+        }}
+      >
+        <p style={{ marginLeft: "5%", marginTop: 0 }}>
           更新する文字:{" "}
           <input
             type="text"
@@ -123,7 +149,10 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
             onChange={(event) => setFontName(event.target.value)}
           />
         </p>
-        <button type="submit" style={{ margin: "15px" }}>
+        <button
+          type="submit"
+          style={{ margin: "15px", marginRight: "5%", marginTop: "0" }}
+        >
           アップロード
         </button>
       </form>
@@ -160,7 +189,7 @@ const Canvas: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ margin: "0 10%" }}>
       <PureCanvas ref={canvasRef} />
     </div>
   );

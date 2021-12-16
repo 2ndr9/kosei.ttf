@@ -3,16 +3,17 @@ import ReactDOM from "react-dom";
 import Canvas from "./canvas";
 import View from "./view";
 import FontFace from "./FontFace";
-// import "./index.css";
 
 import { isChrome, isMobile } from "react-device-detect";
+import Header from "./Header";
 
 if (!isChrome || isMobile) {
-  alert("Google Chromeで開いてください");
+  alert("PCのGoogle Chromeで開いてください");
 }
 
 ReactDOM.render(
   <React.StrictMode>
+    <Header></Header>
     <FontFace></FontFace>
     <Canvas></Canvas>
     <View></View>

@@ -11,9 +11,9 @@ const TextArea = styled.textarea`
 
 const View: React.FC = (props) => {
   return (
-    <section style={{ height: "100%" }}>
+    <section style={{ height: "100%", marginRight: "10%", marginLeft: "10%" }}>
       <h1 className="tsuno"></h1>
-      <p>自由入力欄</p>
+      <p style={{ textAlign: "center", fontSize: "15px" }}>自由入力欄</p>
       <TextArea />
     </section>
   );
