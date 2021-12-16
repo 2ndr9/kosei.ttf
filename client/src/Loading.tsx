@@ -9,9 +9,8 @@ const StyledDiv = styled.div`
   flex-direction: column;
 `;
 
-// margin-left: 40%;
 const StyledDiv2 = styled.div`
-  margin-top: 20%;
+  margin-top: 10%;
   margin-left: 40%;
   width: 100%;
 `;
