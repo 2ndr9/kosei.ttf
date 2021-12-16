@@ -147,7 +147,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
             maxLength={1}
             value={fontName}
             onChange={(event) => setFontName(event.target.value)}
-            pattern="[\u30A1-\u30F6 || \u3041-\u3096 || \uFF66-\uFF9F || \uFF10-\uFF19 || \uFF21-\uFF3A || \uFF41-\uFF5A || \u3400-\u9FFF || \uF900-\uFAFF || \uD840-\uD87F || \uDC00-\uDFFF || 0-9 || !-/:-@[-`{-~ || ！-／：-＠［-｀｛-～、-〜”’・]"
+            pattern="[a-zA-z || \u30A1-\u30F6 || \u3041-\u3096 || \uFF66-\uFF9F || \uFF21-\uFF3A || \uFF41-\uFF5A || \u3400-\u9FFF || \uF900-\uFAFF || \uD840-\uD87F || \uDC00-\uDFFF || 0-9 || !-/:-@[-`{-~ || ！-／：-＠［-｀｛-～、-〜”’・]"
             title="特殊な記号は対応していません。"
           />
         </p>
