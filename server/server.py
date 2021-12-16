@@ -15,6 +15,12 @@ def test(base64, font_name):
     lambda_handler(base64, font_name)
 
 
+@app.route('/', methods=['GET'])
+def get():
+    return 'success'
+
+
+
 @app.route('/', methods=['POST'])
 def post_user():
     try:
@@ -35,5 +41,5 @@ def post_user():
 
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=443, ssl_context=('/home/ec2-user/openssl/server.crt', '/home/ec2-user/openssl/server.key'), threaded=True, debug=True)
-    app.run(host='0.0.0.0', port=5000, threaded=True, debug=True)
+   # app.run(host='0.0.0.0', port=443, ssl_context=('/home/ec2-user/openssl/server.crt', '/home/ec2-user/openssl/server.key'), threaded=True, debug=True)
+    app.run(host='0.0.0.0', port=80, threaded=True, debug=True)
