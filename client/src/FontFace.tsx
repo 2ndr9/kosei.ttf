@@ -18,6 +18,10 @@ input{
 #root{
   height:"100%";
 }
+
+::placeholder{
+  color:silver;
+}
 `;
 
 export default FontFace;
