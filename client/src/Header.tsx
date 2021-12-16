@@ -2,11 +2,8 @@ import React from "react";
 
 import styled from "styled-components";
 
-const Title = styled.p`
-  text-align: center;
+const Title = styled.a`
   font-size: 27px;
-  margin: 0;
-  padding: 0;
 `;
 
 const BackGround = styled.div`
@@ -25,6 +22,7 @@ const BackGround = styled.div`
     #cde4ff 3px,
     #cde4ff 7px
   );
+  text-align: center;
 `;
 
 const CaptionBackground = styled.div`
@@ -46,7 +44,9 @@ const Header: React.FC = (props) => {
   return (
     <div>
       <BackGround>
-        <Title>個性.ttf</Title>
+        <Title href="https://font-a.s3.ap-northeast-1.amazonaws.com/個性.ttf">
+          個性.ttf
+        </Title>
       </BackGround>
       <CaptionBackground>
         <Caption>

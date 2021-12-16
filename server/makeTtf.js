@@ -18,9 +18,9 @@ webfont({
     s3.upload(
       {
         Bucket: "font-a",
-        Key: "a.ttf",
+        Key: "個性.ttf",
         Body: result.ttf,
-	ACL: "public-read"
+        ACL: "public-read",
       },
       (err, data) => {
         if (err) {
