@@ -7,8 +7,6 @@ const s3 = new AWS.S3();
 webfont({
   files: "./svg/*.svg",
   fontName: "everyoneFont",
-  fontHeight: 800,
-  descent: 64,
   formats: ["ttf"],
 })
   .then((result) => {
