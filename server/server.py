@@ -5,24 +5,26 @@ from flask import Flask, request, jsonify
 from pngToSVG import lambda_handler
 from flask_cors import CORS
 
+import asyncio
+
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
 
 @app.route('/', methods=['POST'])
-def post_user():
+async def post_user():
     try:
         # jsonリクエストから値取得
         payload = request.json
         base64 = payload['base64']
         font_name = payload['font_name']
         # print(font_name)
-        lambda_handler(base64, font_name)
+        await asyncio.wait_for( lambda_handler(base64, font_name),timeout=60)
         
         # print(font_name)
         # HTTPステータスを200以外で返却したい場合
         return 'success'
-    except:
+    except asyncio.TimeoutError:
         return jsonify({'message': 'bad request'}), 400 
 
 
