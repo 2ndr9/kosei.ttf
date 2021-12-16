@@ -8,7 +8,7 @@ import { isMobile } from "react-device-detect";
 import Header from "./Header";
 
 if (isMobile) {
-  alert("PCでChromeで開いてください");
+  alert("PCで開いてください");
 }
 
 ReactDOM.render(

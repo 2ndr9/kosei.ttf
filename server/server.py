@@ -1,5 +1,6 @@
 #!/usr/bin python3
 
+# import timeout_decorator
 import base64
 from flask import Flask, request, jsonify
 from pngToSVG import lambda_handler
@@ -8,7 +9,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
-import timeout_decorator
 
 # @timeout_decorator.timeout(5)
 def test(base64, font_name):
@@ -20,7 +20,6 @@ def get():
     return 'success'
 
 
-
 @app.route('/', methods=['POST'])
 def post_user():
     try:
@@ -30,14 +29,13 @@ def post_user():
         font_name = payload['font_name']
         # print(font_name)
         test(base64, font_name)
-        
+
         # print(font_name)
         # HTTPステータスを200以外で返却したい場合
     except:
-        return jsonify({'message': 'bad request'}), 400 
+        return jsonify({'message': 'bad request'}), 400
     else:
         return 'success'
-
 
 
 if __name__ == '__main__':
