@@ -19,7 +19,7 @@ async def post_user():
         base64 = payload['base64']
         font_name = payload['font_name']
         # print(font_name)
-        await asyncio.wait_for( lambda_handler(base64, font_name),timeout=60)
+        await asyncio.wait_for( lambda_handler(base64, font_name),timeout=30)
         
         # print(font_name)
         # HTTPステータスを200以外で返却したい場合
