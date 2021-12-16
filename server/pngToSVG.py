@@ -223,7 +223,6 @@ def png_to_svg(img_str, contiguous=None, keep_every_point=None):
     else:
         return rgba_image_to_svg_pixels(im_rgba)
 
-
 def lambda_handler(base_64ed_image, font_name):
     parser = OptionParser()
     parser.add_option("-p", "--pixels", action="store_false", dest="contiguous",
