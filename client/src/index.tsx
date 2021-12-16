@@ -4,10 +4,10 @@ import Canvas from "./canvas";
 import View from "./view";
 import FontFace from "./FontFace";
 
-import { isChrome, isMobile } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 import Header from "./Header";
 
-if (!isChrome || isMobile) {
+if (isMobile) {
   alert("PCのGoogle Chromeで開いてください");
 }
 
