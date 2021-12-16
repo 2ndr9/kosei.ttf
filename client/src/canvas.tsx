@@ -149,10 +149,7 @@ const PureCanvas = React.forwardRef((props, ref: any) => {
             onChange={(event) => setFontName(event.target.value)}
           />
         </p>
-        <button
-          type="submit"
-          style={{ margin: "15px", marginRight: "5%", marginTop: "0" }}
-        >
+        <button type="submit" style={{ margin: "19px", width: "100px" }}>
           アップロード
         </button>
       </form>
@@ -169,17 +166,13 @@ const Canvas: React.FC = () => {
 
     const handleResize = () => {
       ctx.canvas.height =
-        window.innerHeight > window.innerWidth * 2
-          ? window.innerWidth * 0.9
-          : (((window.innerWidth * window.innerHeight) / window.innerWidth) *
-              0.9) /
-            2;
+        window.innerHeight < 428 || window.innerWidth < 428
+          ? window.innerWidth * 0.8
+          : 428;
       ctx.canvas.width =
-        window.innerHeight > window.innerWidth * 2
-          ? window.innerWidth * 0.9
-          : (((window.innerWidth * window.innerHeight) / window.innerWidth) *
-              0.9) /
-            2;
+        window.innerHeight < 428 || window.innerWidth < 428
+          ? window.innerWidth * 0.8
+          : 428;
     };
 
     handleResize();
