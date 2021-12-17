@@ -22,7 +22,7 @@ input{
 }
 
 ::placeholder{
-  color:darkgray;
+  color: dimgray;
 }
 `;
 
