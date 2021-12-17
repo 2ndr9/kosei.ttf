@@ -7,7 +7,8 @@ from pngToSVG import lambda_handler
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 # @timeout_decorator.timeout(5)
