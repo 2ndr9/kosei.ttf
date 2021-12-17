@@ -8,6 +8,7 @@ const Title = styled.a`
 
 const BackGround = styled.div`
   margin: 0.8em 10% 0.8em 10%;
+  padding: 8px;
   background: -webkit-repeating-linear-gradient(
     -45deg,
     #f0f8ff,
@@ -48,7 +49,7 @@ const Header: React.FC = (props) => {
           個性.ttf
         </Title>
       </BackGround>
-      <CaptionBackground>
+      {/* <CaptionBackground>
         <Caption>
           整った書体、きれいなフォント、読みやすい字。
           <br />
@@ -60,7 +61,7 @@ const Header: React.FC = (props) => {
           <br />
           あなたの一文字を頂けませんか。
         </Caption>
-      </CaptionBackground>
+      </CaptionBackground> */}
     </div>
   );
 };
