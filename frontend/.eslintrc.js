@@ -23,6 +23,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'react/react-in-jsx-scope': 'off',
     'no-void': [
       'error',
       {

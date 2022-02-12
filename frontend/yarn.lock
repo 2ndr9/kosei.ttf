@@ -1467,6 +1467,34 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
+"@svg-drawing/animation@4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@svg-drawing/animation/-/animation-4.2.2.tgz#618ebec41dda6aedce67664d1d15f1904b244116"
+  integrity sha512-K1HXQtEjsX4/sbLrrIKXC3StiIv8Szi+bubIj7T1FNmJS1jx6ZKuSaiXYleOPObMf76LjxgBFh5NR3wsSxLivg==
+  optionalDependencies:
+    "@svg-drawing/core" "4.2.2"
+
+"@svg-drawing/core@4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@svg-drawing/core/-/core-4.2.2.tgz#536364e6a13be072d2d4e8e34cddd70fd3e28088"
+  integrity sha512-jjPgbCvekzpHoMqLFz2qmaCXQOp3WMoA0/3PZhG2HSMl3vkEgj72tDMwjUc8YdrrhU7GwTLO2l44YUmQwcdy0g==
+
+"@svg-drawing/img-trace@4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@svg-drawing/img-trace/-/img-trace-4.2.2.tgz#82080710a3f76a2c9aea27588b42f077421ffa34"
+  integrity sha512-HQzJSYay3PZg4CxNoZw0Y//FFT02AJwRVYOWjYAudBzAVWPNLxptZY/s0SXwGENOW+7hKJLRJ7hgBfcDj3SR4g==
+  optionalDependencies:
+    "@svg-drawing/animation" "4.2.2"
+    "@svg-drawing/core" "4.2.2"
+
+"@svg-drawing/react@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@svg-drawing/react/-/react-4.2.2.tgz#574cf6afe9ddde8f636c247d745deb489d6a78c8"
+  integrity sha512-eNYfGOn7v/pbw0n+pgAJqvNsM1L94IYCu8uan7yoG+E8RlPe5HvtXtAMbhySFwVj30GYZY4NcqvRB79r5b+KtQ==
+  optionalDependencies:
+    "@svg-drawing/core" "4.2.2"
+    "@svg-drawing/img-trace" "4.2.2"
+
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-5.4.0.tgz#81ef61947bb268eb9d50523446f9c638fb355906"
