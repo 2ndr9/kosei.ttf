@@ -1,12 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
 import reportWebVitals from './reportWebVitals'
+import DrawingCanvas from './DrawingCanvas'
+import Header from './Header'
+import View from './View'
+import GlobalCss from './GlobalCss'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalCss />
+    <Header />
+    <DrawingCanvas />
+    <View />
   </React.StrictMode>,
   document.getElementById('root')
 )
