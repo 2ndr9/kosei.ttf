@@ -15,6 +15,11 @@ const GlobalCss = () => {
           background-color: #f5fffa;
         }
 
+        body {
+          max-width: 900px;
+          margin: auto;
+        }
+
         input {
           font-family: 'kosei';
         }

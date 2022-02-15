@@ -1,43 +1,48 @@
 import { useSvgDrawing } from '@svg-drawing/react'
 
 import { css } from '@emotion/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import Loading from './Loading'
+
+const fontUploadAPIURL = 'https://x8fknamjf6.execute-api.ap-northeast-1.amazonaws.com/prod'
 
 const DrawingCanvas = () => {
-  const [renderRef, draw] = useSvgDrawing()
-  const [targetCharacter, setTargetCharacter] = useState<string>()
+  const [renderRef, draw] = useSvgDrawing({ fill: 'black', penWidth: 1 })
+  const [targetCharacter, setTargetCharacter] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  const handleSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault()
     setIsLoading(true)
 
-    console.log(targetCharacter, draw.getSvgXML())
+    const svgXML = draw.getSvgXML()
 
-    // axios
-    //   .post('https://2ndr9.com/', {
-    //     base64: String(base64Data).replace(/^.*,/, ''),
-    //     font_name: fontName,
-    //   })
-    //   .then((res) => {
-    //     setIsLoading(false)
-    //     console.log(res)
-    //     window.location.href = window.location.href
-    //   })
-    event.preventDefault()
+    await axios
+      .post(fontUploadAPIURL, {
+        svgXML: svgXML,
+        targetCharacter: targetCharacter,
+      })
+      .then(() => {
+        window.location.reload()
+      })
   }
   const handleClear = () => {
     draw.clear()
 
+    // ウィンドウリサイズ時の挙動修正のため
+    // 対症療法
     window.location.reload()
   }
 
   return (
     <div css={top}>
+      <Loading isLoading={isLoading} />
       <div css={wrapper}>
         <div css={canvas} ref={renderRef} />
       </div>
 
-      <button css={buttonColor} onClick={handleClear}>
+      <button css={resetStyle} onClick={handleClear}>
         リセット
       </button>
 
@@ -45,6 +50,7 @@ const DrawingCanvas = () => {
         <label>
           更新する文字:
           <input
+            css={inputStyle}
             type="text"
             required
             maxLength={1}
@@ -55,7 +61,7 @@ const DrawingCanvas = () => {
             title="特殊な記号は対応していません。"
           />
         </label>
-        <input css={buttonColor} type="submit" value="アップロード" />
+        <input css={uploadStyle} type="submit" value="アップロード" />
       </form>
     </div>
   )
@@ -63,7 +69,16 @@ const DrawingCanvas = () => {
 
 export default DrawingCanvas
 
-const buttonColor = css`
+const inputStyle = css`
+  margin-left: 17px;
+`
+
+const uploadStyle = css`
+  background-color: #f5fffa;
+  margin: 7px auto;
+  margin-left: 17px;
+`
+const resetStyle = css`
   background-color: #f5fffa;
   margin: 7px auto;
 `
@@ -89,7 +104,6 @@ const wrapper = css`
   }
 `
 const top = css`
-  // background: skyblue;
   text-align: center;
 `
 
