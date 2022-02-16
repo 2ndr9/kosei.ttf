@@ -20,10 +20,6 @@ const GlobalCss = () => {
           max-width: 900px;
           margin: auto;
         }
-
-        input {
-          font-family: 'kosei';
-        }
       `}
     />
   )
