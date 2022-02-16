@@ -1,17 +1,16 @@
 {
   "files": {
-    "main.js": "/a/static/js/main.9e50d314.chunk.js",
-    "main.js.map": "/a/static/js/main.9e50d314.chunk.js.map",
-    "runtime-main.js": "/a/static/js/runtime-main.5ea25e5b.js",
-    "runtime-main.js.map": "/a/static/js/runtime-main.5ea25e5b.js.map",
-    "static/js/2.2b3ccd97.chunk.js": "/a/static/js/2.2b3ccd97.chunk.js",
-    "static/js/2.2b3ccd97.chunk.js.map": "/a/static/js/2.2b3ccd97.chunk.js.map",
-    "index.html": "/a/index.html",
-    "static/js/2.2b3ccd97.chunk.js.LICENSE.txt": "/a/static/js/2.2b3ccd97.chunk.js.LICENSE.txt"
+    "main.css": "/kosei.ttf/static/css/main.e6c13ad2.css",
+    "main.js": "/kosei.ttf/static/js/main.063d4576.js",
+    "static/js/787.cda612ba.chunk.js": "/kosei.ttf/static/js/787.cda612ba.chunk.js",
+    "static/media/download.svg": "/kosei.ttf/static/media/download.f91f2b8f7f53e0def282bd0823cec6a7.svg",
+    "index.html": "/kosei.ttf/index.html",
+    "main.e6c13ad2.css.map": "/kosei.ttf/static/css/main.e6c13ad2.css.map",
+    "main.063d4576.js.map": "/kosei.ttf/static/js/main.063d4576.js.map",
+    "787.cda612ba.chunk.js.map": "/kosei.ttf/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.5ea25e5b.js",
-    "static/js/2.2b3ccd97.chunk.js",
-    "static/js/main.9e50d314.chunk.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.063d4576.js"
   ]
 }
