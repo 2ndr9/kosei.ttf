@@ -30,7 +30,7 @@ const downloadFromS3AndMakeSvgFontAndMakeTtfAndUpload = async () => {
     fontName: "個性",
     normalize: true,
     centerHorizontally: true,
-    centerVertically: true,
+    // centerVertically: true,
   });
 
   return new Promise(async () => {
