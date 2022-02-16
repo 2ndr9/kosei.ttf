@@ -5,7 +5,8 @@ const GlobalCss = () => {
       styles={css`
         @font-face {
           font-family: 'kosei';
-          src: url('https://font-a.s3.ap-northeast-1.amazonaws.com/個性.ttf?${new Date().getTime()}') format('opentype');
+          src: url('https://s3.ap-northeast-1.amazonaws.com/kosei.ttf/%E5%80%8B%E6%80%A7.ttf?${new Date().getTime()}')
+            format('opentype');
         }
 
         body,
