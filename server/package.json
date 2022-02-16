@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "aws-sdk": "^2.1046.0",
-    "webfont": "^11.2.26"
+    "fs": "^0.0.1-security",
+    "svg2ttf": "^6.0.3",
+    "svgicons2svgfont": "^10.0.5"
   }
 }
