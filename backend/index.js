@@ -5,8 +5,8 @@ const svg2ttf = require("svg2ttf");
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
 
-const uploadToS3 = async (body, key) => {
-  await s3
+const uploadToS3 = (body, key) => {
+  return s3
     .upload(
       {
         Bucket: "kosei.ttf",
@@ -25,19 +25,19 @@ const uploadToS3 = async (body, key) => {
     .promise();
 };
 
-const downloadFromS3AndMakeSvgFontAndMakeTtfAndUpload = async () => {
+const downloadFromS3AndMakeSvgFont = () => {
   const fontStream = new SVGIcons2SVGFontStream({
     fontName: "個性",
     normalize: true,
     centerHorizontally: true,
   });
 
-  return new Promise(async () => {
+  return new Promise(async (resolve) => {
     fontStream
       .pipe(fs.createWriteStream("/tmp/個性.svg"))
       .on("finish", function () {
         console.log("Font successfully created!");
-        makeTtfAndUpload();
+        resolve();
       })
       .on("error", function (err) {
         console.log(err);
@@ -79,7 +79,8 @@ exports.handler = async (event) => {
     const targetCharacter = event.targetCharacter;
 
     await uploadToS3(svgXML, `svgs/${targetCharacter}.svg`);
-    await downloadFromS3AndMakeSvgFontAndMakeTtfAndUpload();
+    await downloadFromS3AndMakeSvgFont();
+    await makeTtfAndUpload();
 
     return {
       statusCode: 200,
@@ -93,7 +94,7 @@ exports.handler = async (event) => {
   } catch (error) {
     console.log(error);
     return {
-      statusCode: 400,
+      statusCode: 500,
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Origin": "*",
