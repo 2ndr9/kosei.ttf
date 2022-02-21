@@ -10,7 +10,7 @@ const Loading = ({ isLoading }: Props) => {
     return (
       <div css={loadingWrapper}>
         <div css={center}>
-          <ThreeDots color="#00BFFF" height={100} width={100} />
+          <ThreeDots color="#00BFFF" height={300} width={300} />
         </div>
       </div>
     )
@@ -30,5 +30,6 @@ const loadingWrapper = css`
 const center = css`
   position: fixed;
   top: calc(40%);
-  left: calc(50% - 100px / 2);
+  left: calc(50% - 300px / 2);
+  z-index: 11:
 `

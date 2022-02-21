@@ -11,13 +11,14 @@ const GlobalCss = () => {
 
         body,
         button,
+        input,
         textarea {
           font-family: 'kosei';
           background-color: #f5fffa;
         }
 
         body {
-          max-width: 900px;
+          max-width: 800px;
           margin: auto;
         }
       `}
