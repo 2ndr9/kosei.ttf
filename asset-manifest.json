@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/kosei.ttf/static/css/main.e6c13ad2.css",
-    "main.js": "/kosei.ttf/static/js/main.063d4576.js",
+    "main.js": "/kosei.ttf/static/js/main.1663aea5.js",
     "static/js/787.cda612ba.chunk.js": "/kosei.ttf/static/js/787.cda612ba.chunk.js",
     "static/media/download.svg": "/kosei.ttf/static/media/download.f91f2b8f7f53e0def282bd0823cec6a7.svg",
     "index.html": "/kosei.ttf/index.html",
-    "main.e6c13ad2.css.map": "/kosei.ttf/static/css/main.e6c13ad2.css.map",
-    "main.063d4576.js.map": "/kosei.ttf/static/js/main.063d4576.js.map",
+    "main.1663aea5.js.map": "/kosei.ttf/static/js/main.1663aea5.js.map",
     "787.cda612ba.chunk.js.map": "/kosei.ttf/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.063d4576.js"
+    "static/js/main.1663aea5.js"
   ]
 }
