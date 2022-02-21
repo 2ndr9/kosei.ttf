@@ -96,6 +96,7 @@ const canvas = css`
   left: 0;
   bottom: 0;
   right: 0;
+  z-index: 1;
 `
 const wrapper = css`
   position: relative;

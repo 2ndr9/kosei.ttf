@@ -25,11 +25,11 @@ const loadingWrapper = css`
   position: fixed;
   background: rgba(100, 100, 100, 0.5);
   inset: 0;
+  z-index: 2;
 `
 
 const center = css`
   position: fixed;
   top: calc(40%);
   left: calc(50% - 300px / 2);
-  z-index: 11:
 `
