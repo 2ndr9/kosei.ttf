@@ -70,13 +70,19 @@ const DrawingCanvas = () => {
 export default DrawingCanvas
 
 const inputStyle = css`
-  margin-left: 17px;
+  margin-left: 12px;
+  font-size: 20px;
+  width: 20px;
+  padding-left: 22.5px;
+  padding-right: 22.5px;
+  vertical-align: middle;
 `
 
 const uploadStyle = css`
   background-color: #f5fffa;
   margin: 7px auto;
   margin-left: 17px;
+  vertical-align: middle;
 `
 const resetStyle = css`
   background-color: #f5fffa;
