@@ -18,7 +18,7 @@ const Title = css`
 `
 
 const Header = () => (
-  <a css={Title} href="https://font-a.s3.ap-northeast-1.amazonaws.com/個性.ttf">
+  <a css={Title} href="https://s3.ap-northeast-1.amazonaws.com/kosei.ttf/%E5%80%8B%E6%80%A7.ttf">
     個性.ttf
   </a>
 )
