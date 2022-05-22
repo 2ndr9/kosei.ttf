@@ -9,7 +9,7 @@ const TextArea = css`
   display: block;
 `
 
-const View: React.FC = (props) => {
+const View: React.FC = () => {
   // 対応文字用検討
   return (
     <textarea
