@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 16
           cache: "npm"
-          cache-dependency-paths: "**/package-lock.json"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: install and build
         run: |
