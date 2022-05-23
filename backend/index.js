@@ -77,14 +77,15 @@ exports.handler = async (event) => {
   try {
     const svgXML = event.svgXML;
     const targetCharacter = event.targetCharacter;
-
-    await uploadToS3(svgXML, `svgs/${targetCharacter}.svg`);
-    await downloadFromS3AndMakeSvgFont();
-    await makeTtfAndUpload();
+    console.log("log test");
     fs.unlink("/tmp/個性.svg", (err) => {
       if (err) throw err;
       console.log("delete /tmp/個性.svg");
     });
+
+    await uploadToS3(svgXML, `svgs/${targetCharacter}.svg`);
+    await downloadFromS3AndMakeSvgFont();
+    await makeTtfAndUpload();
 
     return {
       statusCode: 200,
