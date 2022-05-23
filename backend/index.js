@@ -74,18 +74,17 @@ const makeTtfAndUpload = async () => {
   await uploadToS3(Buffer.from(ttf.buffer), "個性.ttf");
 };
 
+// const handler = async (event) => {
 exports.handler = async (event) => {
   try {
     const svgXML = event.svgXML;
     const targetCharacter = event.targetCharacter;
     console.log("log test");
-    fs.unlink("/tmp/個性.svg", (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("delete /tmp/個性.svg");
-      }
-    });
+    try {
+      fs.unlinkSync("/tmp/個性.svg");
+    } catch (e) {
+      console.log(e);
+    }
 
     try {
       await uploadToS3(svgXML, `svgs/${targetCharacter}.svg`);
@@ -117,3 +116,5 @@ exports.handler = async (event) => {
     };
   }
 };
+
+// handler();
