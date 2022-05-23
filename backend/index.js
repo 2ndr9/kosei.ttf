@@ -70,6 +70,7 @@ const downloadFromS3AndMakeSvgFont = () => {
 
 const makeTtfAndUpload = async () => {
   const ttf = svg2ttf(fs.readFileSync("/tmp/個性.svg", "utf8"), {});
+  console.log(ttf);
   await uploadToS3(Buffer.from(ttf.buffer), "個性.ttf");
 };
 
