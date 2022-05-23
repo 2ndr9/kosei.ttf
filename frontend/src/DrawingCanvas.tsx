@@ -26,6 +26,10 @@ const DrawingCanvas = () => {
       .then(() => {
         window.location.reload()
       })
+      .catch(() => {
+        console.log('APIがタイムアウトするなどのエラーが発生しました')
+        window.location.reload()
+      })
   }
   const handleClear = () => {
     draw.clear()
