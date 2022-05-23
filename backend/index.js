@@ -4,6 +4,7 @@ const fs = require("fs");
 const svg2ttf = require("svg2ttf");
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
+const { v4: uuidv4 } = require("uuid");
 
 const uploadToS3 = (body, key) => {
   return s3
@@ -25,7 +26,7 @@ const uploadToS3 = (body, key) => {
     .promise();
 };
 
-const downloadFromS3AndMakeSvgFont = () => {
+const downloadFromS3AndMakeSvgFont = (uuid) => {
   const fontStream = new SVGIcons2SVGFontStream({
     fontName: "個性",
     normalize: true,
@@ -34,7 +35,7 @@ const downloadFromS3AndMakeSvgFont = () => {
 
   return new Promise(async (resolve) => {
     fontStream
-      .pipe(fs.createWriteStream("/tmp/個性.svg"))
+      .pipe(fs.createWriteStream(`/tmp/${uuid}.svg`))
       .on("finish", function () {
         console.log("Font successfully created!");
         resolve();
@@ -68,8 +69,8 @@ const downloadFromS3AndMakeSvgFont = () => {
   });
 };
 
-const makeTtfAndUpload = async () => {
-  const ttf = svg2ttf(fs.readFileSync("/tmp/個性.svg", "utf8"), {});
+const makeTtfAndUpload = async (uuid) => {
+  const ttf = svg2ttf(fs.readFileSync(`/tmp/${uuid}.svg`, "utf8"), {});
   console.log(ttf);
   await uploadToS3(Buffer.from(ttf.buffer), "個性.ttf");
 };
@@ -79,17 +80,12 @@ exports.handler = async (event) => {
   try {
     const svgXML = event.svgXML;
     const targetCharacter = event.targetCharacter;
-    console.log("log test");
-    try {
-      fs.unlinkSync("/tmp/個性.svg");
-    } catch (e) {
-      console.log(e);
-    }
 
+    const uuid = uuidv4();
     try {
       await uploadToS3(svgXML, `svgs/${targetCharacter}.svg`);
-      await downloadFromS3AndMakeSvgFont();
-      await makeTtfAndUpload();
+      await downloadFromS3AndMakeSvgFont(uuid);
+      await makeTtfAndUpload(uuid);
     } catch (e) {
       console.log(e);
     }
